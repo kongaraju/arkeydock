@@ -1,0 +1,11 @@
+<mat-list role="list">
+    <mat-list-item role="list-item">
+      <mat-checkbox disabled [checked]="selectedContainerInfo.Config.Tty">Allocate a TTY for this container</mat-checkbox>
+    </mat-list-item>
+    <mat-list-item role="list-item">
+      <mat-checkbox disabled [checked]="selectedContainerInfo.Config.OpenStdin">Keep STDIN open even if not attached</mat-checkbox>
+    </mat-list-item>
+    <mat-list-item role="list-item">
+      <mat-checkbox disabled [checked]="selectedContainerInfo.Config.StdinOnce">Privileged mode</mat-checkbox>
+    </mat-list-item>
+  </mat-list>

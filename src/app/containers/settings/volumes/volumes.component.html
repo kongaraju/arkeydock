@@ -1,0 +1,23 @@
+<div class="padl10">
+    <h3>Volumes Configuration</h3>
+    <form>
+      <table>
+        <tr>
+          <th>Docker Folder</th>
+          <th>Local Folder</th>
+        </tr>
+        <tr *ngFor="let volume of selectedContainerInfo.Mounts">
+          <td>
+            <mat-form-field>
+              <input disabled type="text" matInput [value]="volume.Destination" />
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <input disabled type="text" matInput [value]="volume.Source" />
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>

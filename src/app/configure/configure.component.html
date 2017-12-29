@@ -1,0 +1,37 @@
+<div>
+  <mat-card class="app-configure-form">
+    <form>
+      <mat-toolbar>
+        <mat-icon>settings_system_daydream</mat-icon>
+        <span>&nbsp;Configure Server</span>
+      </mat-toolbar>
+
+      <div class="full-width mart30">
+        <label>Protocol:</label>
+        <mat-radio-group [(ngModel)]="protocol" name="proto">
+          <mat-radio-button *ngFor="let protocol of protocols" [value]="protocol.value"> {{protocol.text}} </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="mart20"></div>
+      <mat-form-field class="full-width">
+        <mat-icon matPrefix>settings_input_antenna</mat-icon>
+        <input matInput placeholder="Host" [(ngModel)]="host" name="host" />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-icon matPrefix>settings_input_svideo</mat-icon>
+        <input matInput placeholder="Port" [(ngModel)]="port" name="port" />
+      </mat-form-field>
+      <div class="flex">
+        <mat-icon>language</mat-icon>
+        <output class="block">&nbsp;{{protocol}}://{{host}}:{{port}}/</output>
+        <span class="flex-spacer"></span>
+        <button mat-mini-fab matTooltip="Test Connection" (click)="testConnection()" [color]="connectionSuccess ? 'primary':''">
+          <mat-icon class="">rss_feed</mat-icon>
+        </button>
+      </div>
+      <div class="mart20">
+        <button mat-raised-button color="primary">Save</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

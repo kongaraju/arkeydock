@@ -1,0 +1,45 @@
+<div class="images-container">
+  <form (ngSubmit)="searchImages()" #imageSearchForm="ngForm">
+    <mat-form-field class="image-search-fld">
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput name="search" type="text" placeholder="Search for Docker Images from Docker Hub" [(ngModel)]="searchTerm"
+      />
+      <button type="button" *ngIf="searchTerm" matSuffix mat-icon-button aria-label="Clear" (click)="searchTerm=''" matTooltip="Clear">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+  <div class="host-images" [style.display]="!searchTerm ? 'block' : 'none'">
+    <mat-grid-list cols="5" rowHeight="4:2">
+      <mat-grid-tile *ngFor="let image of images">
+        <mat-card class="image-card">
+          <mat-card-header>
+            <mat-card-title>
+
+              <span matLine>{{image.RepoTags && image.RepoTags[0] ? stripImagePath(image.RepoTags[0]) : "None"}}</span>
+            </mat-card-title>
+            <mat-card-subtitle>{{stripDigestPath(image.RepoDigests)}}</mat-card-subtitle>
+          </mat-card-header>
+          <!-- <mat-card-content></mat-card-content> -->
+          <mat-card-actions align="end">
+            <button mat-button disabled>
+              <mat-icon>label_outline</mat-icon>
+              <span>{{image.RepoTags && image.RepoTags[0] ? stripImageTag(image.RepoTags[0]) : "None"}}</span>
+            </button>
+            <span class="flex-spacer"></span>
+            <button mat-icon-button matTooltip="Create Container" (click)="onCreate(image)">
+              <mat-icon>add</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Delete Image" (click)="onRemove(image)">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+  </div>
+
+  <image-search-results [imageSearchResults]="imageSearchResults" [style.display]="searchTerm ? 'block' : 'none'">
+  </image-search-results>
+</div>

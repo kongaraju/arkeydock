@@ -1,0 +1,154 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+/* @import "./assets/flexgrid/flexboxgrid.css"; */
+body{
+    margin: 0;
+}
+.images-toggle-button.mat-button-toggle:not(.mat-button-toggle-checked){
+    color:#fff;
+}
+
+mat-sidenav-container.sidenav-container, .images-container{
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+mat-sidenav {
+    width: 250px;
+}
+.image-card.mat-card {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+  
+  .image-card.mat-card  .mat-card-content {
+    display: flex;
+    flex: 1;
+    font-size: 12px;
+    color:#555;
+  }
+.spacer{
+    flex: 1 auto; 
+}
+.flex-spacer{
+    flex:1 1 auto;
+}
+.padl30, .container-info, .logs-container{
+ padding-left: 30px;
+}
+.padl10{
+    padding-left:10px;
+}
+.mart30{
+    margin-top: 30px;
+}
+.mart10{
+    margin-top: 10px;
+}
+.mart20{
+    margin-top: 20px;
+}
+.block{
+    display: block;
+}
+.flex{
+    display: flex;
+}
+.pull-right{
+    float:right;
+}
+
+.container-sidenav{
+    box-shadow: 3px 0 6px rgba(0,0,0,.24);
+}
+.containers-list{
+    height: calc(100% - 72px);
+    overflow: auto;
+}
+.env-full-width, .fld-full-width, .full-width{
+    width: 100%;
+}
+.fld-width75{
+    width: 75%;
+}
+.env-table{
+    width: 75%;
+    margin-left: 10px;
+}
+
+
+.ports-table .port-fld, .ports-table .protocol-fld{
+    max-width: 75px;
+}
+
+
+.container-list-item{
+    border-bottom: 1px solid #eee;
+}
+.container-list-item.selected{
+    background-color:#E91E63;
+    color: #fff;
+}
+.container-list-item .container-remove-button, .container-list-item:hover .container-state-icon{
+    display: none;
+}
+.container-list-item:hover .container-remove-button{
+    display: inline;
+    color:red;
+}
+.container-list-item.selected:hover .container-remove-button{
+    color:#fff;
+}
+
+.container-list-item .container-state-icon{
+    color: #ddd;
+}
+.container-list-item.mat-status-success .container-state-icon{
+    color: #009688;
+}
+.main-container{
+    width:100%;
+    height: 100%;
+}
+.logs-container{
+    width: 94%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+
+.col-flex{
+    display: flex;
+    flex-flow: column;
+}
+.row-flex, button.mat-icon-button.row-flex{
+    display: flex;
+    flex-flow: row;
+}
+/*
+IMAGES
+*/
+.images-container{
+    top: 70px;
+}
+.image-card{
+    width: 80%;
+    height: 60%;
+}
+.image-search-fld{
+    width: 80%;
+    margin-left:20px;
+    display: block;
+}
+
+/*
+CONFIGURE
+*/
+.app-configure-form{
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 100px;
+}

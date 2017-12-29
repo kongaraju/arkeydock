@@ -1,0 +1,76 @@
+<div>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav mode="side" opened="true" class="container-sidenav">
+      <mat-toolbar>
+        <span>Containers</span>
+        <span class="spacer"></span>
+        <a matTooltip="Create Container" mat-icon-button routerLink="/images">
+          <mat-icon class="rkd-icon container-icon">add</mat-icon>
+        </a>
+        <button matTooltip="Refresh Containers" mat-icon-button>
+          <mat-icon class="rkd-icon container-icon" (click)="onRefresh()">refresh</mat-icon>
+        </button>
+        <!-- <mat-icon class="rkd-icon container-icon" >more_vert</mat-icon> -->
+      </mat-toolbar>
+      <mat-list class="containers-list" role="list">
+        <mat-list-item class="container-list-item " role="listitem" *ngFor="let container of containers" (click)="onSelect(container)"
+          [class.mat-status-success]="container.State === 'running'" [class.selected]="container == selectedContainer">
+
+          <h3 mat-line>{{stripSlash(container.Names[0])}}</h3>
+          <span mat-line>{{stripImagePath(container.Image)}}</span>
+          <mat-icon class="container-state-icon">fiber_manual_record</mat-icon>
+          <button mat-icon-button class="container-remove-button" (click)="onRemove(container)">
+            <mat-icon>highlight_off</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <system-dashboard *ngIf="!selectedContainer"></system-dashboard>
+      <div class="main-container" *ngIf="selectedContainer">
+        <mat-toolbar>
+          <button matTooltip="Start Container" mat-button *ngIf="selectedContainer.State == 'exited' || selectedContainer.State == 'created'"
+            (click)="onStart(selectedContainer)">
+            <mat-icon class="rkd-icon container-icon">play_arrow</mat-icon>
+            <span>Start</span>
+          </button>
+          <button matTooltip="Stop Container" mat-button *ngIf="selectedContainer.State == 'running'" (click)="onStop(selectedContainer)">
+            <mat-icon class="rkd-icon container-icon">stop</mat-icon>
+            <span>Stop</span>
+          </button>
+          <button matTooltip="Restart Container" mat-button class="row-flex" (click)="onRestart(selectedContainer)">
+            <mat-icon class="rkd-icon container-icon">replay</mat-icon>
+            <span>Restart</span>
+          </button>
+          <button mat-icon-button [matMenuTriggerFor]="containerMoreOptions">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #containerMoreOptions="matMenu">
+            <button mat-menu-item [disabled]="selectedContainer.State == 'paused' || selectedContainer.State == 'exited'" (click)="onPause(selectedContainer)">
+              <mat-icon>pause</mat-icon> Puase</button>
+            <button mat-menu-item [disabled]="selectedContainer.State == 'running' || selectedContainer.State == 'exited'" (click)="onUnpause(selectedContainer)">
+              <mat-icon>slow_motion_video</mat-icon> Unpause</button>
+            <button mat-menu-item (click)="onKill(selectedContainer)">
+              <mat-icon>layers_clear</mat-icon> Kill</button>
+          </mat-menu>
+          <span class="spacer"></span>
+          <mat-button-toggle-group #containerViewGroup="matButtonToggleGroup" [value]="currentView">
+            <mat-button-toggle matTooltip="Open Settings" value="info" (click)="onInfoToggle(selectedContainer)">
+              <mat-icon class="rkd-icon container-icon">info</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle matTooltip="Open Settings" value="settings" (click)="onSettingsToggle(selectedContainer)">
+              <mat-icon class="rkd-icon container-icon">settings</mat-icon>
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+        </mat-toolbar>
+
+        <div class="container-info ">
+          <h3>{{ stripSlash(selectedContainer.Names[0]) | uppercase }}</h3>
+        </div>
+        <container-info class="container-info-block" [selectedContainer]="selectedContainer" [selectedContainerLogs]="selectedContainerLogs" *ngIf="!showSettings"></container-info>
+        <container-settings [selectedContainerInfo]="selectedContainerInfo" *ngIf="selectedContainerInfo && showSettings"></container-settings>
+      </div>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

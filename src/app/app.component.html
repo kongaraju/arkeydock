@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+    <span matTooltip="ARKEYDOCK">ArkeyDock</span>
+    
+    <!-- This fills the remaining space of the current row -->
+    <span style="flex:1 1 auto"></span>
+    <a mat-icon-button matTooltip="Containers" class="images-toggle-button" routerLink="/containers">
+        <mat-icon>dashboard</mat-icon>
+    </a>
+    <a mat-icon-button matTooltip="Images" class="images-toggle-button" routerLink="/images">
+        <mat-icon>store</mat-icon>
+    </a>
+    <a mat-icon-button matTooltip="Connect to server" routerLink="/configure">
+        <mat-icon>settings_remote</mat-icon>
+    </a>
+</mat-toolbar>
+
+<!-- <app-containers></app-containers> -->
+<!-- <app-images></app-images> -->
+<router-outlet></router-outlet>
+        
