@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Configuration } from './configuration';
+import {MessageBoxComponent} from '../dialogs/message-box/message-box.component';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { DockerSystemService } from '../docker.system.service';
 
 @Component({
@@ -9,7 +11,7 @@ import { DockerSystemService } from '../docker.system.service';
 })
 export class ConfigureComponent implements OnInit {
 
-  constructor(private dockerSystemService: DockerSystemService) { }
+  constructor(private dockerSystemService: DockerSystemService, public dialog: MatDialog) { }
   protocols: Array<object> = [{ value: "http", text: "HTTP" }, { value: "https", text: "HTTPs" }];
   protocol: string = "http";
   host: string = "localhost";
@@ -26,9 +28,19 @@ export class ConfigureComponent implements OnInit {
     this.dockerSystemService.testConnection(this.getGivenUrl()).subscribe((status:string) => {
       if(status=="OK"){
         this.connectionSuccess = true;
+
+        let dialogRef = this.dialog.open(MessageBoxComponent, {
+          width: '450px',      
+          data: { title: "Status", message: "Connection Successful" }
+        });
         alert("Connection Successful");
       }
     },(errResp)=>{
+
+      let dialogRef = this.dialog.open(MessageBoxComponent, {
+        width: '450px',      
+        data: { title: errResp.statusText, message: errResp.error.message }
+      });
       alert(errResp.statusText);
     });
   }

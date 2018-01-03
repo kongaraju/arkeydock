@@ -57,6 +57,9 @@ mat-sidenav {
 .flex{
     display: flex;
 }
+.justify-end{
+    justify-content: flex-end;
+}
 .pull-right{
     float:right;
 }

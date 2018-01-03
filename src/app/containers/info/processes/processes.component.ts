@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
+import {MessageBoxComponent} from '../../../dialogs/message-box/message-box.component'
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { DockerContainerService } from '../../docker.container.service';
 
 @Component({
@@ -9,7 +11,7 @@ import { DockerContainerService } from '../../docker.container.service';
 })
 export class ContainerInfoProcessesComponent implements OnInit {
   @Input() selectedContainer;
-  constructor(private dockerContainerService: DockerContainerService) { }
+  constructor(private dockerContainerService: DockerContainerService, public dialog: MatDialog) { }
   displayedColumns = ["PID", "USER", "TIME", "COMMAND"];//["UID", "PID", "PPID", "C", "STIME", "TTY", "TIME", "CMD"];
   dataSource: any;
   ngOnInit() {
@@ -23,13 +25,20 @@ export class ContainerInfoProcessesComponent implements OnInit {
     }
   }
   getProcesses() {
+
+    if(this.selectedContainer.State != "running") return;
     this.dockerContainerService.getContainerProcesses(this.selectedContainer.Id).subscribe((processes) => {
       
       this.dataSource = new MatTableDataSource(this.toTable(processes));
       //this.dataSource.data = this.toTable(processes);
       //this.displayedColumns = processes.Titles;
     }, (errResp) => {
-      alert(errResp.statusText)
+      //alert(errResp.statusText);
+
+      let dialogRef = this.dialog.open(MessageBoxComponent, {
+        width: '450px',      
+        data: { title: errResp.statusText, message: errResp.error.message }
+      });
     });
   }
   toTable(data) {

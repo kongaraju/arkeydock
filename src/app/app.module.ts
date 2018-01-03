@@ -20,7 +20,8 @@ import {
   MatSidenavModule,
   MatToolbarModule,
   MatIconModule,
-  MatTableModule
+  MatTableModule,
+  MatDialogModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -47,7 +48,7 @@ import { ImageSearchResultsComponent } from './images/search-results/search-resu
 
 import { ConfigureComponent } from './configure/configure.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
+import { MessageBoxComponent } from './dialogs/message-box/message-box.component';
 
 
 
@@ -67,7 +68,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ImageSearchResultsComponent,
     ConfigureComponent,
     DashboardComponent,
-    ContainerInfoComponent
+    ContainerInfoComponent,
+    MessageBoxComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,9 +92,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatRadioModule,
     MatMenuModule,
     MatTableModule,
+    MatDialogModule,
     AppRoutingModule
   ],
   providers: [DockerContainerService, DockerImageService, DockerSystemService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[MessageBoxComponent]
 })
 export class AppModule { }
