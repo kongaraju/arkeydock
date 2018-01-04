@@ -14,6 +14,9 @@ export class ContainerInfoProcessesComponent implements OnInit {
   constructor(private dockerContainerService: DockerContainerService, public dialog: MatDialog) { }
   displayedColumns = ["PID", "USER", "TIME", "COMMAND"];//["UID", "PID", "PPID", "C", "STIME", "TTY", "TIME", "CMD"];
   dataSource: any;
+  hasError: boolean;
+  errorMessage:string;
+  errorTitle:string;
   ngOnInit() {
     this.getProcesses();
   }
@@ -25,8 +28,14 @@ export class ContainerInfoProcessesComponent implements OnInit {
     }
   }
   getProcesses() {
-
-    if(this.selectedContainer.State != "running") return;
+    this.hasError = this.selectedContainer.State != "running";
+    if(this.hasError){
+      this.errorTitle = "Status";
+      this.errorMessage = "Container is not runnning!";
+    }
+    if(this.selectedContainer.State != "running") {   
+      return;
+    }
     this.dockerContainerService.getContainerProcesses(this.selectedContainer.Id).subscribe((processes) => {
       
       this.dataSource = new MatTableDataSource(this.toTable(processes));
@@ -35,10 +44,15 @@ export class ContainerInfoProcessesComponent implements OnInit {
     }, (errResp) => {
       //alert(errResp.statusText);
 
-      let dialogRef = this.dialog.open(MessageBoxComponent, {
-        width: '450px',      
-        data: { title: errResp.statusText, message: errResp.error.message }
-      });
+      // let dialogRef = this.dialog.open(MessageBoxComponent, {
+      //   width: '450px',      
+      //   data: { title: errResp.statusText, message: errResp.error.message }
+      // });
+      this.hasError = true;
+      if(this.hasError){
+        this.errorTitle = errResp.statusText;
+        this.errorMessage = errResp.error.message;
+      }
     });
   }
   toTable(data) {

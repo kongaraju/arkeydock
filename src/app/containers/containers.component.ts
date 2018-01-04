@@ -14,7 +14,18 @@ export class ContainersComponent extends Utils implements OnInit  {
     super();
   }
   getContainers(): void {
-    this.dockerContainerService.getContainers().subscribe(containers => this.containers = containers);
+    this.dockerContainerService.getContainers().subscribe(containers => {
+      this.containers = containers.sort(this.sortByState);
+    });
+  }
+  sortByState(a:Container,b:Container):number{
+    if((a.State != 'running' && b.State != 'running')||(a.State == 'running' && b.State == 'running')){
+      return 0;
+    } else if(a.State == 'running'){
+      return -1;
+    }else if(b.State == 'running'){
+      return 1;
+    }
   }
   inspectContainer(containerId: string): void {
     this.dockerContainerService.inspectContainer(containerId).subscribe(container => {

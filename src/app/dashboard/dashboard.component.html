@@ -1,11 +1,17 @@
 <div class="system-dashboard-container mat-typography">
-  <mat-grid-list cols="4" rowHeight="100px">
-      <mat-grid-tile
-          *ngFor="let tile of tiles"
-          [colspan]="tile.cols"
-          [rowspan]="tile.rows"
-          [style.background]="tile.color">
-        {{tile.text}}
-      </mat-grid-tile>
-    </mat-grid-list>
+  <mat-grid-list cols="4" rowHeight="60px" gutterSize="20px">
+    <mat-grid-tile class="mat-elevation-z8" *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color">
+      <div class="full-width pad10">
+        <div class="block text-align-rt">
+          <span class="dashboard-tile-number">{{tile.number}}</span>
+        </div>
+        <div class="block mart30">
+          <div class="dashboard-tile-text">
+            {{tile.text}}
+          </div>
+          <mat-icon class="dashboard-tile-icon">{{tile.icon}}</mat-icon>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>

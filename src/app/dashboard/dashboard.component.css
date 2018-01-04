@@ -3,3 +3,17 @@
     color: #FFF;
     font-size: 20px;
 }
+.dashboard-tile-number{
+    font-size: 80px;
+}
+.dashboard-tile-text{
+    font-size: 20px;
+}
+.dashboard-tile-icon{
+    position: absolute;
+    right: 60px;
+    bottom: 60px;
+    font-size: 100px;
+    opacity: 0.5;
+    color: rgba(0,0,0,.5);
+}

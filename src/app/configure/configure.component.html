@@ -23,7 +23,7 @@
       </mat-form-field>
       <div class="flex">
         <mat-icon>language</mat-icon>
-        <output class="block">&nbsp;{{protocol}}://{{host}}:{{port}}/</output>
+        <span class="block lh24" >&nbsp;{{protocol}}://{{host}}:{{port}}/</span>
         <span class="flex-spacer"></span>
         <button mat-mini-fab matTooltip="Test Connection" (click)="testConnection()" [color]="connectionSuccess ? 'primary':''">
           <mat-icon class="">rss_feed</mat-icon>

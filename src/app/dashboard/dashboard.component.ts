@@ -10,12 +10,12 @@ import {DockerSystemService} from '../docker.system.service';
 export class DashboardComponent implements OnInit {
   sysInfo:any;
   tiles = [
-    {text: 'One', cols: 3, rows: 2, color: '#3F51B5'},
-    {text: 'Two', cols: 1, rows: 4, color: '#E91E63'},
-    {text: 'Three', cols: 1, rows: 2, color: '#7986CB'},
-    {text: 'Four', cols: 2, rows: 2, color: '#FF80AB'},
-    {text: 'Five', cols: 2, rows: 1, color: '#E91E63'},
-    {text: 'Six', cols: 2, rows: 1, color: '#3F51B5'},
+    {number:0, text: '', cols: 1, rows: 2, color: '#7986CB', icon:"dashboard"},
+    {number:0,text: '', cols: 1, rows: 2, color: '#E91E63', icon:"play_arrow"},
+    {number:0,text: '', cols: 1, rows: 2, color: '#3F51B5', icon:"pause"},
+    {number:0,text: '', cols: 1, rows: 2, color: '#FF80AB', icon:"stop"},
+    {number:0,text: '', cols: 2, rows: 2, color: '#E91E63', icon:"store"},
+    {number:0,text: '', cols: 2, rows: 2, color: '#3F51B5', icon:"memory"},
   ];
   constructor(private dockerSystemService:DockerSystemService) { }
   ngOnInit() {
@@ -24,12 +24,23 @@ export class DashboardComponent implements OnInit {
   getSystemInfo(){
     this.dockerSystemService.getSysInfo().subscribe((sysInfo)=>{
       this.sysInfo = sysInfo;
-      this.tiles[0].text = this.sysInfo.Containers+" Containers";
-      this.tiles[1].text = this.sysInfo.ContainersRunning+" Containers Running";
-      this.tiles[2].text = this.sysInfo.ContainersPaused+" Containers Paused";
-      this.tiles[3].text = this.sysInfo.ContainersStopped+" Containers Stopped";
-      this.tiles[4].text = this.sysInfo.Images +" Images";
-      this.tiles[5].text = this.sysInfo.NCPU +" CPUs";
+      this.tiles[0].text = "Containers";
+      this.tiles[0].number = this.sysInfo.Containers;
+
+      this.tiles[1].text = "Running";
+      this.tiles[1].number = this.sysInfo.ContainersRunning;
+
+      this.tiles[2].text = "Paused";
+      this.tiles[2].number = this.sysInfo.ContainersPaused;
+
+      this.tiles[3].text = "Stopped";
+      this.tiles[3].number = this.sysInfo.ContainersStopped;
+
+      this.tiles[4].text = "Images";
+      this.tiles[4].number = this.sysInfo.Images;
+
+      this.tiles[5].text = "CPUs";
+      this.tiles[5].number = this.sysInfo.NCPU;
     });
   }
 

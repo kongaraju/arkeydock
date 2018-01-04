@@ -64,8 +64,8 @@
           </mat-button-toggle-group>
         </mat-toolbar>
 
-        <div class="container-info ">
-          <h3>{{ stripSlash(selectedContainer.Names[0]) | uppercase }}</h3>
+        <div class="container-info mat-typography">
+          <h2>{{ stripSlash(selectedContainer.Names[0]) | uppercase }}</h2>
         </div>
         <container-info class="container-info-block" [selectedContainer]="selectedContainer" [selectedContainerLogs]="selectedContainerLogs" *ngIf="!showSettings"></container-info>
         <container-settings [selectedContainerInfo]="selectedContainerInfo" *ngIf="selectedContainerInfo && showSettings"></container-settings>

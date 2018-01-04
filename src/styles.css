@@ -39,6 +39,10 @@ mat-sidenav {
 .padl30, .container-info, .logs-container{
  padding-left: 30px;
 }
+
+.pad10{
+    padding: 10px;
+}
 .padl10{
     padding-left:10px;
 }
@@ -63,6 +67,20 @@ mat-sidenav {
 .pull-right{
     float:right;
 }
+.lh24{
+    line-height: 24px;
+}
+.text-align-rt{
+    text-align: right;
+}
+
+mat-icon + *{
+    vertical-align: text-bottom;
+}
+.mat-radio-button{
+    margin-right: 10px;
+}
+
 
 .container-sidenav{
     box-shadow: 3px 0 6px rgba(0,0,0,.24);
@@ -120,6 +138,7 @@ mat-sidenav {
     width: 94%;
     height: 100%;
     box-sizing: border-box;
+    padding-top: 10px;
 }
 
 
