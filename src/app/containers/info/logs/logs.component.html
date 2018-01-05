@@ -1,9 +1,6 @@
 <div class="logs-container">
-    <mat-card class="container-logs-card mat-elevation-z8">
-      <mat-card-header>
-        <mat-card-title>Container Logs</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
+    <mat-card class="container-logs-card ">
+      <mat-card-content [scrollDown]="selectedContainerLogs">
         <pre>{{replaceNullChars(selectedContainerLogs)}}</pre>
       </mat-card-content>
     </mat-card>

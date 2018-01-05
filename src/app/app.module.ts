@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import {
   MatMenuModule,
   MatTooltipModule,
@@ -49,6 +51,7 @@ import { ImageSearchResultsComponent } from './images/search-results/search-resu
 import { ConfigureComponent } from './configure/configure.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MessageBoxComponent } from './dialogs/message-box/message-box.component';
+import { ScrollDownDirective } from './directives/scroll-down.directive';
 
 
 
@@ -70,12 +73,14 @@ import { MessageBoxComponent } from './dialogs/message-box/message-box.component
     DashboardComponent,
     ContainerInfoComponent,
     MessageBoxComponent,
+    ScrollDownDirective,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     NoopAnimationsModule,
+    FlexLayoutModule,
     MatButtonModule,
     MatCheckboxModule,
     MatListModule,
