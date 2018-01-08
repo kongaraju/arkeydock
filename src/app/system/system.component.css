@@ -1,0 +1,41 @@
+.system-sidenav{
+    box-shadow: 3px 0 6px rgba(0,0,0,.24);
+}
+
+.system-sidenav mat-list-item{
+    border-bottom: 1px solid #f8f8f8;
+}
+
+.system-sidenav mat-list-item:hover, .system-sidenav mat-list-item.active{
+    background-color: #efefef;
+}
+
+.system-info-main-container{
+    padding: 10px;
+}
+
+.info-table{
+    padding-bottom: 10px;
+}
+.info-row, .info-table div{
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.info-row span, .info-table div span{
+    width: 49%;
+    display: inline-block;
+}
+.info-table div span:last-child{
+    font-weight: 700;
+}
+
+.info-section{
+    padding: 10px;
+}
+.info-section>div:first-child{
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}

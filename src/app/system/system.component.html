@@ -1,0 +1,456 @@
+<div class="mat-typography" *ngIf="info">
+
+    <mat-sidenav-container class="system-container sidenav-container">
+        <mat-sidenav mode="side" opened="true" class="system-sidenav">
+            <mat-list role="list">
+                <mat-list-item role="listitem" (click)="selectSection = 'general'" [class.active]="selectSection == 'general'">General</mat-list-item>
+                <mat-list-item role="listitem" (click)="selectSection = 'sysStatus'" [class.active]="selectSection == 'sysStatus'">System Status</mat-list-item>
+                <mat-list-item role="listitem" (click)="selectSection = 'driver'" [class.active]="selectSection == 'driver'">Driver</mat-list-item>
+                <mat-list-item role="listitem" (click)="selectSection = 'plugins'" [class.active]="selectSection == 'plugins'">Plugins</mat-list-item>
+                <mat-list-item role="listitem" (click)="selectSection = 'regConfig'" [class.active]="selectSection == 'regConfig'">Registry Config</mat-list-item>
+                <mat-list-item role="listitem" (click)="selectSection = 'securityOpts'" [class.active]="selectSection == 'securityOpts'">Security Options</mat-list-item>
+                <mat-list-item role="listitem" (click)="selectSection = 'swarm'" [class.active]="selectSection == 'swarm'">Swarm</mat-list-item>
+                <mat-list-item role="listitem" (click)="selectSection = 'runtimes'" [class.active]="selectSection == 'runtimes'">Runtimes</mat-list-item>
+                <mat-list-item role="listitem" (click)="selectSection = 'commits'" [class.active]="selectSection == 'commits'">Commits</mat-list-item>
+                <!--<mat-list-item role="listitem" (click)="selectSection = 'general'" [class.active]="selectSection == 'general'">Driver</mat-list-item> -->
+            </mat-list>
+        </mat-sidenav>
+        <mat-sidenav-content class="system-info-main-container">
+            <div class="info-table" *ngIf="selectSection == 'general'">
+                <div>
+                    <span>ID: </span>
+                    <span>{{info.ID}}</span>
+                </div>
+                <div>
+                    <span>Name: </span>
+                    <span>{{info.Name}}</span>
+                </div>
+                <div>
+                    <span>Labels: </span>
+                    <span>
+                        <mat-chip-list>
+                            <mat-chip *ngFor="let lbl of info.Labels" color="accent" selected=true>{{lbl}}</mat-chip>
+                        </mat-chip-list>
+                    </span>
+                </div>
+                <div class="info-row">
+                    <span>Containers: </span>
+                    <span>{{info.Containers}}</span>
+                </div>
+                <div>
+                    <span>Containers Runnig: </span>
+                    <span>{{info.ContainersRunning}}</span>
+                </div>
+                <div>
+                    <span>Containers Paused: </span>
+                    <span>{{info.ContainersPaused}}</span>
+                </div>
+                <div>
+                    <span>Containers Stopped: </span>
+                    <span>{{info.ContainersStopped}}</span>
+                </div>
+                <div>
+                    <span>Images: </span>
+                    <span>{{info.Images}}</span>
+                </div>
+
+                <div>
+                    <span>Docker Root: </span>
+                    <span>{{info.DockerRootDir}}</span>
+                </div>
+                <div>
+                    <span>System Time: </span>
+                    <span>{{info.SystemTime}}</span>
+                </div>
+                <div>
+                    <span>Logging Driver: </span>
+                    <span>{{info.LoggingDriver}}</span>
+                </div>
+                <div>
+                    <span>Events Listener: </span>
+                    <span>{{info.NEventsListener}}</span>
+                </div>
+                <div>
+                    <span>Kernel Version: </span>
+                    <span>{{info.KernelVersion}}</span>
+                </div>
+                <div>
+                    <span>Kernel Memory: </span>
+                    <span>
+                        <mat-slide-toggle color="primary" [checked]="info.KernelMemory"></mat-slide-toggle>
+                    </span>
+                </div>
+                <div>
+                    <span>Operating System: </span>
+                    <span>{{info.OperatingSystem}}</span>
+                </div>
+                <div>
+                    <span>OS Type: </span>
+                    <span>{{info.OSType}}</span>
+                </div>
+                <div>
+                    <span>Architecture: </span>
+                    <span>{{info.Architecture}}</span>
+                </div>
+                <div>
+                    <span>CPUs: </span>
+                    <span>{{info.NCPU}}</span>
+                </div>
+                <div>
+                    <span>Cpu Cfs Period: </span>
+                    <span>
+                        <mat-slide-toggle color="primary" [checked]="info.CpuCfsPeriod"></mat-slide-toggle>
+                    </span>
+                </div>
+                <div>
+                    <span>Cpu Cfs Quota: </span>
+                    <span>
+                        <mat-slide-toggle color="primary" [checked]="info.CpuCfsQuota"></mat-slide-toggle>
+                    </span>
+                </div>
+                <div>
+                    <span>CPU Shares: </span>
+                    <span>
+                        <mat-slide-toggle color="primary" [checked]="info.CPUShares"></mat-slide-toggle>
+                    </span>
+                </div>
+                <div>
+                    <span>CPU Set: </span>
+                    <span>
+                        <mat-slide-toggle color="primary" [checked]="info.CPUSet"></mat-slide-toggle>
+                    </span>
+                </div>
+                <div>
+                    <span>Memory Total: </span>
+                    <span>{{info.MemTotal}}</span>
+                </div>
+                <div>
+                    <span>Memory Limit: </span>
+                    <span>
+                        <mat-slide-toggle color="primary" [checked]="info.MemoryLimit"></mat-slide-toggle>
+                    </span>
+                </div>
+                <div>
+                    <span>Swap Limit: </span>
+                    <span>
+                        <mat-slide-toggle color="primary" [checked]="info.SwapLimit"></mat-slide-toggle>
+                    </span>
+                </div>
+                <div>
+                    <span>Index Server Address: </span>
+                    <span>{{info.IndexServerAddress}}</span>
+                </div>
+                <div>
+                    <span>Server Version: </span>
+                    <span>{{info.ServerVersion}}</span>
+                </div>
+
+                <div>
+                    <span>Fd: </span>
+                    <span>{{info.NFd}}</span>
+                </div>
+                <div>
+                    <span>Goroutines: </span>
+                    <span>{{info.NGoroutines}}</span>
+                </div>
+
+
+
+                <div>
+                    <span>Oom Kill Disable: </span>
+                    <span>
+                        <mat-slide-toggle color="primary" [checked]="info.OomKillDisable"></mat-slide-toggle>
+                    </span>
+                </div>
+                <div>
+                    <span>IPv4 Forwarding: </span>
+                    <span>
+                        <mat-slide-toggle color="primary" [checked]="info.IPv4Forwarding"></mat-slide-toggle>
+                    </span>
+                </div>
+                <div>
+                    <span>Bridge Nf Ip tables: </span>
+                    <span>
+                        <mat-slide-toggle color="primary" [checked]="info.BridgeNfIptables"></mat-slide-toggle>
+                    </span>
+                </div>
+                <div>
+                    <span>Bridge Nf Ip6 tables: </span>
+                    <span>
+                        <mat-slide-toggle color="primary" [checked]="info.BridgeNfIp6tables"></mat-slide-toggle>
+                    </span>
+                </div>
+                <div>
+                    <span>Debug: </span>
+                    <span>
+                        <mat-slide-toggle color="primary" [checked]="info.Debug"></mat-slide-toggle>
+                    </span>
+                </div>
+                <div>
+                    <span>Experimental Build: </span>
+                    <span>
+                        <mat-slide-toggle color="primary" [checked]="info.ExperimentalBuild"></mat-slide-toggle>
+                    </span>
+                </div>
+                <div>
+                    <span>Live Restore Enabled: </span>
+                    <span>
+                        <mat-slide-toggle color="primary" [checked]="info.LiveRestoreEnabled"></mat-slide-toggle>
+                    </span>
+                </div>
+                <div>
+                    <span>Cluster Store: </span>
+                    <span>
+                        {{info.ClusterStore}}
+                    </span>
+                </div>
+                <div>
+                    <span>Cluster Advertise: </span>
+                    <span>
+                        {{info.ClusterAdvertise}}
+                    </span>
+                </div>
+            </div>
+
+            <div *ngIf="selectSection == 'sysStatus'">
+                <div *ngIf="!info.SystemStatus">
+                    No system status data found!
+                </div>
+                <div class="info-table">
+                    <div *ngFor="let status of info.SystemStatus">
+                        <span>{{status[0]}}</span>
+                        <span>{{status[1]}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="selectSection == 'driver'">
+
+                <div>
+                    <h3>Driver Name: {{info.Driver}}</h3>
+                </div>
+                <div *ngIf="!info.DriverStatus">
+                    No driver status data found!
+                </div>
+                <div class="info-table">
+                    <div>
+                        Driver status
+                    </div>
+                    <div *ngFor="let status of info.DriverStatus">
+                        <span>{{status[0]}}</span>
+                        <span>{{status[1]}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="selectSection == 'plugins'">
+                <div class="info-section">
+                    <div>Volume</div>
+                    <div *ngFor="let vol of info.Plugins.Volume">
+                        {{vol}}
+                    </div>
+                </div>
+                <div class="info-section">
+                    <div>Network</div>
+                    <div *ngFor="let vol of info.Plugins.Network">
+                        {{vol}}
+                    </div>
+                </div>
+                <div class="info-section">
+                    <div>Authorization</div>
+                    <div *ngFor="let vol of info.Plugins.Authorization">
+                        {{vol}}
+                    </div>
+                </div>
+                <div class="info-section">
+                    <div>Log</div>
+                    <div *ngFor="let vol of info.Plugins.Log">
+                        {{vol}}
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="selectSection == 'regConfig'">
+                <div class="info-section">
+                    <div>Allow Non-distributable Artifacts CIDRs</div>
+                    <div *ngFor="let vol of info.RegistryConfig.AllowNondistributableArtifactsCIDRs">
+                        {{vol}}
+                    </div>
+                </div>
+                <div class="info-section">
+                    <div>Allow Non-distributable Artifacts Hostnames</div>
+                    <div *ngFor="let vol of info.RegistryConfig.AllowNondistributableArtifactsHostnames">
+                        {{vol}}
+                    </div>
+                </div>
+                <div class="info-section">
+                    <div>Insecure Registry CIDRs</div>
+                    <div *ngFor="let vol of info.RegistryConfig.InsecureRegistryCIDRs">
+                        {{vol}}
+                    </div>
+                </div>
+                <div class="info-section">
+                    <div>Index Configs</div>
+                    <div *ngFor="let config of info.RegistryIndexConfigs">
+                        <h4>{{config.Name}}</h4>
+                        <mat-slide-toggle color="primary" [checked]="config.Secure">Secure</mat-slide-toggle>
+                        <mat-slide-toggle color="primary" [checked]="config.Official">Official</mat-slide-toggle>
+                    </div>
+                </div>
+                <div class="info-section">
+                    <div>Mirrors</div>
+                    <div *ngFor="let vol of info.RegistryConfig.Mirrors">
+                        {{vol}}
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="selectSection == 'securityOpts'">
+                <div class="info-table">
+                    <div *ngFor="let opt of info.SecurityOptionsPairs">
+                        <span>{{opt.name}}</span>
+                        <span>{{opt.value}}</span>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div *ngIf="selectSection == 'swarm'">
+                <div class="info-table">
+                    <div>
+                        <span>Node ID</span>
+                        <span>{{info.Swarm.NodeID}}</span>
+                    </div>
+                    <div>
+                        <span>Node Address</span>
+                        <span>{{info.Swarm.NodeAddr}}</span>
+                    </div>
+                    <div>
+                        <span>Local Node State</span>
+                        <span>{{info.Swarm.LocalNodeState}}</span>
+                    </div>
+                    <div>
+                        <span>Control Available</span>
+                        <span>
+                            <mat-slide-toggle color="primary" [checked]="info.Swarm.ControlAvailable"></mat-slide-toggle>
+                        </span>
+                    </div>
+                    <div>
+                        <span>Error</span>
+                        <span>{{info.Swarm.Error}}</span>
+                    </div>
+                    <div>
+                        <span>Nodes</span>
+                        <span>{{info.Swarm.Nodes}}</span>
+                    </div>
+                    <div>
+                        <span>Managers</span>
+                        <span>{{info.Swarm.Managers}}</span>
+                    </div>
+                </div>
+
+                <h2>Remote Managers</h2>
+                <div class="info-table">
+                    <div>
+                        <span>
+                            <strong>Node Id</strong>
+                        </span>
+                        <span>
+                            <strong>Address</strong>
+                        </span>
+                    </div>
+                    <div *ngFor="let remMgr of info.Swarm.RemoteManagers">
+                        <span>{{remMgr.NodeID}}</span>
+                        <span>{{remMgr.Addr}}</span>
+                    </div>
+                </div>
+
+                <h2>Cluster</h2>
+                <div class="info-table" *ngIf="info.Swarm.Cluster">
+                    <div>
+                        <span>ID</span>
+                        <span>{{info.Swarm.Cluster.ID}}</span>
+                    </div>
+                    <div>
+                        <span>Created At</span>
+                        <span>{{info.Swarm.Cluster.CreatedAt}}</span>
+                    </div>
+                    <div>
+                        <span>Updated At</span>
+                        <span>{{info.Swarm.Cluster.UpdatedAt}}</span>
+                    </div>
+                    <div>
+                        <span>Version</span>
+                        <span>{{info.Swarm.Cluster.Version.Index}}</span>
+                    </div>
+                    <div>
+                        <span>Root Rotation In Progress</span>
+                        <span>
+                            <mat-slide-toggle color="primary" [checked]="info.Swarm.Cluster.RootRotationInProgress"></mat-slide-toggle>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div *ngIf="selectSection == 'runtimes'">
+                <h2>
+                    <span>DefaultRuntime: </span>
+                    <span>{{info.DefaultRuntime}}</span>
+                </h2>
+                <div *ngFor="let runtime of info.RuntimesInfo">
+                    <h3>{{runtime.name}}</h3>
+                    <div class="info-table">
+                        <div *ngFor="let arg of runtime.args">
+                            <span>{{arg[0]}}</span>
+                            <span>{{arg[1]}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="selectSection == 'commits'">
+                <div class="info-section">
+                    <div>Containerd Commit</div>
+                    <div>
+                        ID:
+                        <strong>{{info.ContainerdCommit.ID}}</strong>
+                    </div>
+                    <div>
+                        Expected:
+                        <strong>{{info.ContainerdCommit.Expected}}</strong>
+                    </div>
+                </div>
+                <div class="info-section">
+                    <div>Init Commit</div>
+                    <div>
+                        ID:
+                        <strong>{{info.InitCommit.ID}}</strong>
+                    </div>
+                    <div>
+                        Expected:
+                        <strong>{{info.InitCommit.Expected}}</strong>
+                    </div>
+                </div>
+                <div class="info-section">
+                    <div>Runc Commit</div>
+                    <div>
+                        ID:
+                        <strong>{{info.RuncCommit.ID}}</strong>
+                    </div>
+                    <div>
+                        Expected:
+                        <strong>{{info.RuncCommit.Expected}}</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div *ngIf="selectSection == 'securityOpts'">
+            </div> -->
+
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+
+
+</div>

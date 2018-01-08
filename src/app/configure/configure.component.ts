@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Configuration } from './configuration';
 import {MessageBoxComponent} from '../dialogs/message-box/message-box.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { DockerSystemService } from '../docker.system.service';
+import { DockerSystemService } from '../system/docker.system.service';
 
 @Component({
   selector: 'app-configure',

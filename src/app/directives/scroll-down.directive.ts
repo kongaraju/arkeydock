@@ -1,5 +1,5 @@
 import { Directive, ElementRef,Input } from '@angular/core';
-import { setTimeout } from 'timers';
+
 
 @Directive({
   selector: '[scrollDown]'
@@ -13,7 +13,7 @@ export class ScrollDownDirective {
   }
   private scrollDownElem(){
     let objDiv = this.el.nativeElement;
-    setTimeout(function(){
+    setTimeout(()=>{
       objDiv.scrollTop = objDiv.scrollHeight;
     }, 500)
   }

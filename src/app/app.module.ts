@@ -23,7 +23,9 @@ import {
   MatToolbarModule,
   MatIconModule,
   MatTableModule,
-  MatDialogModule
+  MatDialogModule,
+  MatExpansionModule,
+  MatSlideToggleModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -31,7 +33,7 @@ import { AppRoutingModule } from './/app-routing.module';
 
 import { DockerContainerService } from './containers/docker.container.service';
 import { DockerImageService } from './images/docker.image.service';
-import { DockerSystemService } from './docker.system.service';
+import { DockerSystemService } from './system/docker.system.service';
 
 import { ContainersComponent } from './containers/containers.component';
 import { ContainerSettingsComponent } from './containers/settings/settings.component';
@@ -52,6 +54,7 @@ import { ConfigureComponent } from './configure/configure.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MessageBoxComponent } from './dialogs/message-box/message-box.component';
 import { ScrollDownDirective } from './directives/scroll-down.directive';
+import { SystemComponent } from './system/system.component';
 
 
 
@@ -74,6 +77,7 @@ import { ScrollDownDirective } from './directives/scroll-down.directive';
     ContainerInfoComponent,
     MessageBoxComponent,
     ScrollDownDirective,
+    SystemComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,6 +102,8 @@ import { ScrollDownDirective } from './directives/scroll-down.directive';
     MatMenuModule,
     MatTableModule,
     MatDialogModule,
+    MatExpansionModule,
+    MatSlideToggleModule,
     AppRoutingModule
   ],
   providers: [DockerContainerService, DockerImageService, DockerSystemService],

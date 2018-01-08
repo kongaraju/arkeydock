@@ -38,8 +38,11 @@ export class Utils {
         //return str.replace(/[\u{0080}-\u{FFFF}]/gu,"");
       }
       getEnvPairs(envs:Array<string>):Array<object>{
+        return this.getPairs(envs);
+      }
+      getPairs(envs:Array<string>, splitter:string = "="):Array<object>{
         let envPairsMap = envs.map((envStr)=>{
-          let firstSplitterPos = envStr.indexOf("=");
+          let firstSplitterPos = envStr.indexOf(splitter);
           let envVarName = envStr.substr(0, firstSplitterPos);
           let envVarVal = envStr.substr(firstSplitterPos+1, envStr.length);
           return {name: envVarName, value:envVarVal};

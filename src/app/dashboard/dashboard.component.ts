@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import {DockerSystemService} from '../docker.system.service';
+import {DockerSystemService} from '../system/docker.system.service';
 
 @Component({
   selector: 'system-dashboard',

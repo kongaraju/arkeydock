@@ -11,7 +11,7 @@ export class DockerSystemService {
   testConnection(url = this.dockerApiUrl): Observable<string> {
     return this.http.get(url + "_ping", {"responseType": "text"});
   }
-  getSysInfo():Observable<string> {
+  getSysInfo():Observable<any> {
     return this.http.get<any>(this.dockerApiUrl + "info");
   }
 
