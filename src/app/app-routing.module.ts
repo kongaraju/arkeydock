@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ContainersComponent }      from './containers/containers.component';
-import { ImagesComponent }      from './images/images.component';
-import { ConfigureComponent }      from './configure/configure.component';
-import { SystemComponent }      from './system/system.component';
+import { ContainersComponent } from './containers/containers.component';
+import { ImagesComponent } from './images/images.component';
+import { ConfigureComponent } from './configure/configure.component';
+import { SystemComponent } from './system/system.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/containers', pathMatch: 'full' },
@@ -17,9 +17,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes) 
+    RouterModule.forRoot(routes)
   ],
-  exports:[
+  exports: [
     RouterModule
   ],
   declarations: []

@@ -2,21 +2,26 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Image } from './image';
 
+import { AppContext } from '@app/app.context';
+import { DockerService } from '@app/base-docker.service';
+
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
 @Injectable()
-export class DockerImageService {
-  private dockerApiUrl = 'http://localhost:2375/';  // URL to docker api
-  constructor(private http:HttpClient) { }
-  getImages(): Observable<Image[]>{
-    return this.http.get<Image[]>(this.dockerApiUrl+"images/json");
+export class DockerImageService extends DockerService {
+
+  constructor(private http: HttpClient) {
+    super();
   }
-  searchImages(searchTerm:string): Observable<Image[]>{
-    return this.http.get<Image[]>(this.dockerApiUrl+"images/search?limit=100&term="+searchTerm);
+  getImages(): Observable<Image[]> {
+    return this.http.get<Image[]>(this.dockerApiUrl + "images/json");
   }
-  removeImage(imageId:string):Observable<object>{
-    return this.http.delete<object>(this.dockerApiUrl+"images/"+imageId);
+  searchImages(searchTerm: string): Observable<Image[]> {
+    return this.http.get<Image[]>(this.dockerApiUrl + "images/search?limit=100&term=" + searchTerm);
+  }
+  removeImage(imageId: string): Observable<object> {
+    return this.http.delete<object>(this.dockerApiUrl + "images/" + imageId);
   }
 
 }

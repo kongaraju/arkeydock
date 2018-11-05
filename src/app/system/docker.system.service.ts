@@ -1,17 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import { AppContext } from '@app/app.context';
+import { DockerService } from '@app/base-docker.service';
+
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
 @Injectable()
-export class DockerSystemService {
-  private dockerApiUrl = 'http://localhost:2375/';
-  constructor(private http: HttpClient) { }
+export class DockerSystemService extends DockerService {
+
+  constructor(private http: HttpClient) {
+    super();
+   }
   testConnection(url = this.dockerApiUrl): Observable<string> {
-    return this.http.get(url + "_ping", {"responseType": "text"});
+    return this.http.get(url + "_ping", { "responseType": "text" });
   }
-  getSysInfo():Observable<any> {
+  getSysInfo(): Observable<any> {
     return this.http.get<any>(this.dockerApiUrl + "info");
   }
 

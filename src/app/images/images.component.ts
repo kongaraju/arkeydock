@@ -52,7 +52,7 @@ export class ImagesComponent implements OnInit {
   }
   filterValidImages(images) {
     return images.filter((image) => {
-      return image.RepoTags[0] != "<none>:<none>";
+      return image.RepoTags && image.RepoTags[0] != "<none>:<none>";
     })
   }
   stripImagePath(image: string): string {

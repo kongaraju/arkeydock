@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AppContext } from '@app/app.context';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {
@@ -106,8 +108,12 @@ import { SystemComponent } from './system/system.component';
     MatSlideToggleModule,
     AppRoutingModule
   ],
-  providers: [DockerContainerService, DockerImageService, DockerSystemService],
+  providers: [
+    AppContext,
+    DockerContainerService,
+    DockerImageService,
+    DockerSystemService],
   bootstrap: [AppComponent],
-  entryComponents:[MessageBoxComponent]
+  entryComponents: [MessageBoxComponent]
 })
 export class AppModule { }
