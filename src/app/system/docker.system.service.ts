@@ -4,8 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppContext } from '@app/app.context';
 import { DockerService } from '@app/base-docker.service';
 
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Observable ,  of } from 'rxjs';
 
 @Injectable()
 export class DockerSystemService extends DockerService {

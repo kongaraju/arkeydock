@@ -5,8 +5,7 @@ import { Image } from './image';
 import { AppContext } from '@app/app.context';
 import { DockerService } from '@app/base-docker.service';
 
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Observable ,  of } from 'rxjs';
 
 @Injectable()
 export class DockerImageService extends DockerService {
